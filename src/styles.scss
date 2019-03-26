@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-overlay-container {
+    overflow: auto;
+}
+.custom-row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    background-color: #000;
+  }
+
+  .box-shadow {
+    box-shadow: 1px -1px 33px 0px rgba(0,0,0,0.14)
+  }
+
+  .padding20 {
+    padding: 20px;
+  }
+
+  .add-icon {
+    margin: 0px 10px;
+    color: #17a2b8;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .sbstract-icon {
+    color: #f44336;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  input.ng-dirty.ng-invalid {
+    border: 1px solid #ec0d0d;
+  }
+
+  input.ng-dirty.ng-valid {
+    border: 1px solid #28a745
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }

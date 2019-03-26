@@ -7,6 +7,10 @@ export const routes: Routes = [
         loadChildren: 'src/app/home/module#HomeModule'
     },
     {
+        path: 'sign-in',
+        loadChildren: 'src/app/user/sign-in/module#SignInModule'
+    },
+    {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

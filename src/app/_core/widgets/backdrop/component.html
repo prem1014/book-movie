@@ -1,0 +1,16 @@
+<div class="book-movie-modal" [ngStyle]="{'display': isOpen ? 'block' : 'none'}">
+    <div class="book-movie-modal-body">
+        <div class="loader" *ngIf="!isConfirmationPopUp"></div>
+        <div *ngIf="isConfirmationPopUp" class="confirmationPopUp">
+            <h6>Are you sure ? Records will be deleted.</h6>
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                    <button class="btn btn-info" (click)="ok($event)">Ok</button>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                    <button class="btn" (click)="cancel($event)">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

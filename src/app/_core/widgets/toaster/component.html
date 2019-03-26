@@ -1,0 +1,4 @@
+<div [@openClose]="config.isOpen ? 'open' : 'closed' " class="toaster" [ngClass]="config.type === 'success' ? 'success' : 'error' ">
+    <h5 class="text-center">{{config.message}}</h5>
+    <div class="close-btn" (click)="close()"><i class="far fa-times-circle"></i></div>
+</div>
