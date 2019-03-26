@@ -9,7 +9,7 @@ import { APIService } from './_core/app-service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  private userInfo: User = {
+  public userInfo: User = {
     name: '',
     role: '',
     isAthenticated: false
