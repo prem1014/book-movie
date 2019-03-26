@@ -7,6 +7,11 @@ export const routes: Routes = [
         loadChildren: 'src/app/home/module#HomeModule'
     },
     {
+        path: 'dashboard',
+        loadChildren: 'src/app/dashboard/module#DashboardModule',
+        canActivate: [AppAuthGuard]
+    },
+    {
         path: 'sign-in',
         loadChildren: 'src/app/user/sign-in/module#SignInModule'
     },

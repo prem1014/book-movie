@@ -1,0 +1,36 @@
+.sideNav {
+    background-color: rgb(244, 245, 247);
+    .nav {
+        list-style: none;
+        .nav-item {
+            padding: 5px;
+            a {
+                text-decoration: none;
+            }
+            a:link {
+
+            }
+            
+            /* visited link */
+            a:visited {
+                border: 5px inset #FF9800;
+            }
+            
+            /* mouse over link */
+            a:hover {
+                color: #FF9800;
+            }
+            
+            /* selected link */
+            a:active {
+                border-right: 2px inset #FF9800;
+            }
+        }
+    }
+}
+
+.gridContainer {
+    max-height: 300px;
+    overflow-y: auto;
+    height: 200px;
+}
