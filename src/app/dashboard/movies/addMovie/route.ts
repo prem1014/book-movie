@@ -1,4 +1,4 @@
-import {Routes} from '@Angular/router';
+import { Routes } from '@angular/router';
 import {AddMovieComponent} from './component';
 
 export const route: Routes = [
