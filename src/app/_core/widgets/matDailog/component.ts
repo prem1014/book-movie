@@ -144,7 +144,8 @@ export class ModalPopupComponent implements OnInit {
         this.screen = this.cinemaHallForm.get('screen') as FormArray;
         this.screen.push(this.fg.group({
             screenNo: [1, Validators.required ],
-            totalSeats: [0, Validators.required]
+            totalSeats: [0, Validators.required],
+            rate: [0, Validators.required]
         }));
     }
 
