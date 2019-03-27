@@ -106,6 +106,7 @@ export class ModalPopupComponent implements OnInit {
     }
 
     public confirmDeleteAction() {
+        debugger;
         this.loading = true;
         this.isConfirmationPopUp = true;
     }

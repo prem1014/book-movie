@@ -27,7 +27,7 @@
             </div>
             <div class=" form-group">
                 <div formArrayName="screen" style="margin-top:10px;" class="row"
-                    *ngFor="let item of cinemaHallForm.get('screen').controls; let i = index;">
+                    *ngFor="let item of cinemaHallForm.get('screen')['controls']; let i = index;">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-3" [formGroupName]="i">
                         <input type="number" class="form-control" formControlName="screenNo" />
                     </div>
@@ -58,7 +58,7 @@
     <div class="col-12">
         <h2 class="text-center">Movie Dtails</h2>
         <hr />
-        <form [formGroup]="movieForm" (ngSubmit)="updateMovie()">
+        <form [formGroup]="movieForm">
             <div class="row custom-row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-12">
                     <label>Movie Name:</label>
@@ -127,8 +127,8 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <button type="submit" class="btn btn-primary marginLR" [disabled]="!movieForm.valid">Update</button>
-                    <button class="btn btn-danger marginLR" [disabled]="!movieForm.valid" (click)="confirmDeleteAction()">Delete
+                    <button type="submit" (click)="updateMovie()" class="btn btn-primary marginLR" [disabled]="!movieForm.valid">Update</button>
+                    <button type="btn" class="btn btn-danger marginLR" [disabled]="!movieForm.valid" (click)="confirmDeleteAction()">Delete
                         Movie</button>
                     <button class="btn marginLR" [mat-dialog-close]="movieForm.value" cdkFocusInitial>Close</button>
                 </div>

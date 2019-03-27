@@ -64,7 +64,6 @@ export class DashboardComponent implements OnInit {
     }
     ngOnInit() {
         this.getBooking();
-        //let modalRef = this.modalService.open(BackDropComponent);
     }
 
     private getBooking() {
