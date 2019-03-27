@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col-12">
+        <div class="box-shadow padding20">
+            <h2 class="text-center">CinemaHalls</h2>
+            <hr />
+            <data-grid [gridOptions]="gridOptions" (rowClick)="onRowSelected($event)"></data-grid>
+        </div>
+    </div>
+</div>
+<div *ngIf="loading">
+    <app-backdrop [isOpen]="loading"></app-backdrop>
+</div>

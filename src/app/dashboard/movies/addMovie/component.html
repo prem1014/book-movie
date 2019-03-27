@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-12">
+
+    </div>
+    <div class="col-12 col-lg-10 col-md-10 col-sm-10">
+        <div class="box-shadow padding20">
+            <form #addMovies="ngForm" (ngSubmit)="saveMovie()">
+                <h4 class="text-center">Add Movie</h4>
+                <hr />
+                <div class="row custom-row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                        <label>Movie Name:</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                        <input type="text" class="form-control" name="movieName" [(ngModel)]="movie.movieName"
+                            required />
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                        <label>Movie Description:</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                        <input type="text" class="form-control" name="movieDescirption"
+                            [(ngModel)]="movie.movieDescription" required />
+                    </div>
+                </div>
+                <div class="row custom-row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                        <label>Cinema Hall:</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                        <select type="text" [(ngModel)]="movie.cinemaHallId"
+                            (change)="onCinemaSelected(movie.cinemaHallId)" name="cinemaHall" class="form-control">
+                            
+                            <option [value]="undefined">--Select--</option>
+                            <option *ngFor="let cinemaHall of cinemaHalls" value="{{cinemaHall._id}}">
+                                {{cinemaHall.city}}-{{cinemaHall.hallName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                        <label>Screen No:</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                        <select type="text" [(ngModel)]="movie.screen" name="cinemaHall" class="form-control">
+                            <option [value]="undefined">-- Select--</option>
+                            <option *ngFor="let screen of screens" value="{{screen.screenNo}}">
+                                Screen {{screen.screenNo}} - Total Seats {{screen.totalSeats}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row custom-row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                        <label>Start Date:</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" [(ngModel)]="movie.startDate"
+                                ngbDatepicker #startDate="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" (click)="startDate.toggle()" type="button"><i
+                                        class="far fa-calendar-alt"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                        <label>End Date:</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" [(ngModel)]="movie.endDate"
+                                ngbDatepicker #endDate="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" (click)="endDate.toggle()" type="button"><i
+                                        class="far fa-calendar-alt"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row custom-row">
+                    <div class="col-lg-2 col-md-2 col-sm- col-12">
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm- col-12">
+                        <button type="submit" class="btn btn-success">Save Details</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1 col-12">
+
+    </div>
+</div>
+<div *ngIf="loading">
+    <app-backdrop [isOpen]="loading"></app-backdrop>
+</div>
+<app-toaster [config]="toasterConfig" (closeToasrer)="closeToasrer($event)"></app-toaster>

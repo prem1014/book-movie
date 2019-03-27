@@ -1,0 +1,143 @@
+<div class="row" *ngIf="templateType === 'cinema'">
+    <div class="col-12">
+        <h2 class="text-center">CinemaHall Details</h2>
+        <hr />
+        <form [formGroup]="cinemaHallForm">
+            <div class="form-group">
+                <label for="hallName">Cinemahall Name:</label>
+                <input type="text" class="form-control" formControlName="hallName" placeholder="Enter CinemaHall Name"
+                    name="hallName">
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" formControlName="city" placeholder="Enter City" name="city">
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                        <label>Screen No</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                        <label>Total Seats</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                        <label>Rate</label>
+                    </div>
+                </div>
+            </div>
+            <div class=" form-group">
+                <div formArrayName="screen" style="margin-top:10px;" class="row"
+                    *ngFor="let item of cinemaHallForm.get('screen').controls; let i = index;">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-3" [formGroupName]="i">
+                        <input type="number" class="form-control" formControlName="screenNo" />
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-3" [formGroupName]="i">
+                        <input type="number" class="form-control" formControlName="totalSeats" />
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-3" [formGroupName]="i">
+                        <input type="number" class="form-control" formControlName="rate" />
+                    </div>
+                    <i class="fas fa-plus-circle add-icon" (click)="addScreen(i)"></i>
+                    <i *ngIf="this.screen.length > 1" class="far fa-times-circle sbstract-icon"
+                        (click)="deleteScreen(i)"></i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="btn" class="btn btn-primary marginLR" (click)="update()"
+                        [disabled]="!cinemaHallForm.valid">Update</button>
+                    <button class="btn btn-danger marginLR" [disabled]="!cinemaHallForm.valid"
+                        (click)="confirmDeleteAction()">Delete CinemaHall</button>
+                    <button class="btn marginLR" [mat-dialog-close]="cinemaHallForm.value" cdkFocusInitial>Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row" *ngIf="templateType === 'movie'">
+    <div class="col-12">
+        <h2 class="text-center">Movie Dtails</h2>
+        <hr />
+        <form [formGroup]="movieForm" (ngSubmit)="updateMovie()">
+            <div class="row custom-row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                    <label>Movie Name:</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <input type="text" class="form-control" formControlName="movieName" />
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                    <label>Movie Description:</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <input type="text" class="form-control" formControlName="movieDescription" />
+                </div>
+            </div>
+            <div class="row custom-row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                    <label>Cinema Hall:</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <select type="text" formControlName="cinemaHallId" name="cinemaHall" class="form-control">
+                        <option [ngValue]="select">-- Select--</option>
+                        <option *ngFor="let cinemaHall of cinemaHalls" value="{{cinemaHall._id}}">
+                            {{cinemaHall.city}}-{{cinemaHall.hallName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                    <label>Screen No:</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <select type="text" formControlName="screen" name="cinemaHall" class="form-control">
+                        <option [ngValue]="select">-- Select--</option>
+                        <option *ngFor="let screensDetail of screensDetails" value="{{screensDetail.screenNo}}">
+                            Screen {{screensDetail.screenNo}} - Total Seats {{screensDetail.totalSeats}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row custom-row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                    <label>Start Date:</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" ngbDatepicker
+                            #startDate="ngbDatepicker" formControlName="startDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="startDate.toggle()" type="button"><i
+                                    class="far fa-calendar-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-12">
+                    <label>End Date:</label>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" ngbDatepicker
+                            #endDate="ngbDatepicker" formControlName="endDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" (click)="endDate.toggle()" type="button"><i
+                                    class="far fa-calendar-alt"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary marginLR" [disabled]="!movieForm.valid">Update</button>
+                    <button class="btn btn-danger marginLR" [disabled]="!movieForm.valid" (click)="confirmDeleteAction()">Delete
+                        Movie</button>
+                    <button class="btn marginLR" [mat-dialog-close]="movieForm.value" cdkFocusInitial>Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="loading">
+    <app-backdrop [isOpen]="loading" [isConfirmationPopUp]="isConfirmationPopUp"
+    (confirmOk)="confirmOk()" (confirmNo)="confirmNo()"></app-backdrop>
+</div>
+<app-toaster [config]="toasterConfig" (closeToasrer)="closeToasrer($event)"></app-toaster>
