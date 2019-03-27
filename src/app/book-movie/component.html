@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let movie of movies">
+        <div class="movie">
+            <h4>{{movie.movieName}}</h4>
+            <h5>{{movie.movieDescription}}</h5>
+            <h5>{{movie.cinemaName}} {{movie.city}} Screen {{movie.screen}}</h5>
+            <h6>Started on {{movie.startDate}}</h6>
+            <h6>&#8377; {{movie.rate}}</h6>
+            <button class="btn btn-success" type="button" style="width: 100%;" (click)="bookMovie(movie)">Book</button>
+        </div>
+    </div>
+</div>
+<div *ngIf="loading">
+    <app-backdrop [isOpen]="loading"></app-backdrop>
+</div>
+<div *ngIf="movies.length === 0 && !loading">
+    <h5 class="text-center">No Records Found</h5>
+</div>

@@ -12,6 +12,10 @@ export const routes: Routes = [
         canActivate: [AppAuthGuard]
     },
     {
+        path: 'book-movie',
+        loadChildren: 'src/app/book-movie/module#BookMovieModule'
+    },
+    {
         path: 'sign-in',
         loadChildren: 'src/app/user/sign-in/module#SignInModule'
     },
