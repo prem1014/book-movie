@@ -35,6 +35,7 @@ import { APIService } from './_core/app-service';
     RouterModule.forRoot(routes, {useHash: true})
   ],
   providers: [APIService],
+  entryComponents: [NgbdModalContentComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
