@@ -12,10 +12,11 @@ import { APIService } from '../../app-service';
 export class NgbdModalContentComponent implements OnInit {
     @Input() movie;
     @Input() cinemaHalls;
-    private booking: any = {};
-    private availableSeat: number = 0;
-    private loading: boolean = false;
-    private toasterConfig = {
+    public booking: any = {};
+    public availableSeat: number = 0;
+    public loading: boolean = false;
+    public invalidError: string;
+    public toasterConfig = {
         isOpen: false,
         type: 'success',
         message: ''
@@ -31,7 +32,7 @@ export class NgbdModalContentComponent implements OnInit {
 
     }
 
-    private bookingDateChanged(ev) {
+    public bookingDateChanged() {
         let totalSeat = this.getTotalSeat(Number(this.movie.screen), this.movie.cinemaHallId);
         let filter = 'cinemaHallId=' + this.movie.cinemaHallId + '&screen=' + this.movie.screen + '&bookingDate=' + this.booking.bookingDate.day + '-' + this.booking.bookingDate.month + '-' + this.booking.bookingDate.year;
         this.api.getBooking(filter)
@@ -66,7 +67,7 @@ export class NgbdModalContentComponent implements OnInit {
         return this.getScreenByScreenId(screenId, cinemaId);
     }
 
-    private bookMovie(stripeCard) {
+    public bookMovie(stripeCard) {
         console.log(this.booking);
         let extraData = {
             "name": this.booking.customerName,
@@ -80,15 +81,15 @@ export class NgbdModalContentComponent implements OnInit {
         stripeCard.createToken(extraData);
     }
 
-    private closeToasrer(ev) {
+    public closeToasrer(ev) {
         this.toasterConfig.isOpen = false;
     }
 
-    private onSeatSelected() {
+    public onSeatSelected() {
         this.booking.amount = Number(this.booking.totalSeatsBooked) * Number(this.movie.rate);
     }
 
-    private onStripeInvalid(error: Error) {
+    public onStripeInvalid(error: Error) {
         console.log('Validation Error', error)
         this.loading = false;
         this.toasterConfig.type = 'error';
@@ -96,7 +97,7 @@ export class NgbdModalContentComponent implements OnInit {
         this.toasterConfig.message = error.message;
     }
 
-    private setStripeToken(token: StripeToken) {
+    public setStripeToken(token: StripeToken) {
         console.log('Stripe token', token)
         this.booking = {
             ...this.booking,
@@ -123,7 +124,7 @@ export class NgbdModalContentComponent implements OnInit {
             })
     }
 
-    private onStripeError(error: Error) {
+    public onStripeError(error: Error) {
         console.error('Stripe error', Error)
         this.loading = false;
         this.toasterConfig.type = 'error';

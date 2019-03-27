@@ -11,9 +11,9 @@ import { NgbdModalContentComponent} from '../_core/widgets/NgModal/modal-compone
 })
 
 export class BookMovieComponent implements OnInit {
-    private movies: Array<any> = [];
-    private cinemaHalls: Array<any> = [];
-    private loading: boolean = false;
+    public movies: Array<any> = [];
+    public cinemaHalls: Array<any> = [];
+    public loading: boolean = false;
     constructor(private api: APIService, private modalService: NgbModal){
         
     }
