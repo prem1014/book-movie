@@ -5,7 +5,8 @@ import { Subject } from 'rxjs';
 @Injectable()
 
 export class APIService {
-    private API_URL = 'http://localhost:9000/api/';
+    //private API_URL = 'http://localhost:9000/api/';
+    private API_URL = 'https://book-movie-rest-api.herokuapp.com/api/';
     private tokenVaildDuration = 5 * 60;
     private tokenExpiry = Math.floor(Date.now() / 1000) + (this.tokenVaildDuration * 60)
     public user = new Subject<any>();
