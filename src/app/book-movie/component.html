@@ -4,7 +4,7 @@
             <h4>{{movie.movieName}}</h4>
             <h5>{{movie.movieDescription}}</h5>
             <h5>{{movie.cinemaName}} {{movie.city}} Screen {{movie.screen}}</h5>
-            <h6>Started on {{movie.startDate}}</h6>
+            <h6>Started on {{movie.startDate.day}}-{{movie.startDate.month}}-{{movie.startDate.year}}</h6>
             <h6>&#8377; {{movie.rate}}</h6>
             <button class="btn btn-success" type="button" style="width: 100%;" (click)="bookMovie(movie)">Book</button>
         </div>
